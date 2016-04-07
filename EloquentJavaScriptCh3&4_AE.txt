@@ -1,0 +1,78 @@
+CHAPTER 3 EXCERCISES
+
+function min( num1, num2){
+  var minimum;
+  if (num1 < num2)
+    minimum = num1;
+  else 
+    minimum = num2;
+  return minimum;
+}
+
+--------------------------------
+function isEven(value){
+  var even;
+	if (value > 1)
+      even = isEven(value - 2);
+  else if (value == 1)
+    even = false;
+  else 
+    even = true;
+  return even;
+}
+
+console.log(isEven(50));
+// → true
+console.log(isEven(75));
+// → false
+console.log(isEven(-1));
+// → ??true with above code
+///////////////////////////////////////
+function isEven(value){
+  var even;
+	if (value > 1)
+      even = isEven(value - 2);
+  else if (value < 0)
+    even = isEven (value + 2);
+  else if (value == 1)
+    even = false;
+  else 
+    even = true;
+  return even;
+}
+
+console.log(isEven(50));
+// → true
+console.log(isEven(75));
+// → false
+console.log(isEven(-1));
+// → ??false with above code
+
+//when doing recursion easier for me to think top down instead of from the bottom up which was why my recursive call was probably at the top
+---------------------------------------
+
+function countBs(s){
+  var count = 0;
+ for (var i = 0; i < s.length; i++){
+   if (s.charAt(i) == "B")
+     count++;
+ }
+  return count;
+}
+
+function countChar(s, c){
+  var count = 0;
+ for (var i = 0; i < s.length; i++){
+   if (s.charAt(i) == c)
+     count++;
+ }
+  return count;
+}
+
+console.log(countBs("BBC"));
+// → 2
+console.log(countChar("kakkerlak", "k"));
+// → 4
+
+CHAPTER 4 EXCERCISES
+//TODO
