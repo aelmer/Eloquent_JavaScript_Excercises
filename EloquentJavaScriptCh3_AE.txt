@@ -1,4 +1,4 @@
-CHAPTER 3 EXCERCISES
+﻿CHAPTER 3 EXCERCISES
 
 function min( num1, num2){
   var minimum;
