@@ -66,5 +66,88 @@ function reverseArrayInPlace(a){
   }
 }
 
+function arrayToList(a){
+  var list;
+  var current;
 
+  for (var i = a.length - 1; i >= 0; i--){
+    if (i == a.length - 1){
+      current = {
+     	value: a[i],
+        rest: null
+      }
+    }
+    else{
+      list = {
+       value : a[i],
+        rest: current
+     }
+     current = list;
+   }
+  }
+     return list;
+}
+
+function listToArray(l){
+  var array = [];
+  
+  while (l != null){
+    array.push(l.value);
+    l = l.rest;
+  }
+  
+  return array;
+}
+
+function prepend(val, l){
+  var list;
+  list = {
+    value: val,
+    rest: l
+  };
+  
+  return list;
+}
+
+//non-recursive
+function nth(list, nthElement)
+{
+  var val;
+  
+  for (var i = 0; i <= nthElement; i++){
+    if (i < nthElement){
+      if (list.rest != null)
+      	list = list.rest;
+      else
+        val = undefined;
+    }
+    else
+      val = list.value;
+  }
+  
+  return val;
+}
+
+//recursive
+function nth(list, nthElement)
+{
+  var val;
+  var nodeNum;
+  if (arguments.length > 2)
+    nodeNum = arguments[2];
+  else 
+    nodeNum = 0;
+  
+  if (nodeNum == nthElement)
+    val = list.value;
+  else {
+    if (list.rest != null){
+  		val = nth(list.rest, nthElement, ++nodeNum);
+    }
+    else 
+      val = undefined;
+  }
+  
+  return val;
+}
 
