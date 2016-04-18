@@ -1,4 +1,16 @@
 CHAPTER 4 EXCERCISES
+function range					= line 15
+(improved)function range		= line 24
+function sum					= line 40
+function reverseArray			= line 64
+function reverseArrayInPlace	= line 72
+function arrayToList			= line 81
+function listToArray			= line 103
+function prepend				= line 114
+function nth					= line 125
+recursive function nth			= line 144
+function deepEqual 				= line 167
+
 //Original range function
 function range(start, end){
   var rangeArray = [];
@@ -151,3 +163,41 @@ function nth(list, nthElement)
   return val;
 }
 
+
+function deepEqual( obj1, obj2){
+  //performs type conversion so 5 equals "5"
+ if (obj1 === obj2)
+   return true;
+  else if (typeof(obj1) == "object"  && typeof(obj2) == "object" 
+           && (obj1 != null) && (obj2 != null))
+  {
+    var obj1Properties = 0;
+    var obj2Properties = 0;
+    for ( var i in obj1)
+    {
+      	obj1Properties++;
+    }
+    for (var i in obj2)
+    {
+        obj2Properties++;
+        if (!(i in obj1))
+          return false;
+        else if (!(deepEqual(obj1[i], obj2[i])))
+            return false;
+    }
+    if (obj1Properties == obj2Properties)
+      return true;
+  }
+  else 
+    return false;
+}
+
+var obj = {here: {is: "an"}, object: 2};
+console.log(deepEqual(obj, obj));
+// → true
+console.log(deepEqual(obj, {here: 1, object: 2}));
+// → false
+console.log(deepEqual(obj, {here: {is: "an"}, object: 2}));
+// → true
+console.log(deepEqual(obj, null));
+// → false
