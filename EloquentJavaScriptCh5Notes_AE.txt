@@ -1,0 +1,37 @@
+Ch 5 Notes
+
+-------------
+And you can have functions that change other functions.
+
+function noisy(f) {
+  return function(arg) {
+    console.log("calling with", arg);
+    var val = f(arg);
+    console.log("called with", arg, "- got", val);
+    return val;
+  };
+}
+noisy(Boolean)(0);
+// → calling with 0
+// → called with 0 - got false
+
+Don't understand what is being changed in the function -- noisy would be the same every time you called it with that value
+Also don't understand why Boolean was specified in the function called
+-- After playing around with function on website passing in 1, true, false, "i", and "zero"
+--Boolean before the parameter converts the value to a boolean value, anything not 0 or false is converted to true ("zero" converts to true, as does "false" and "0")
+f(arg) then just gets the boolean value of the parameter passed in; if 0 or false writes out bool value false otherwise writes out bool value true
+
+f is a function
+making Boolean a function with the second set of parenthesis Boolean's arguments
+-------------
+
+built in array methods:
+forEach
+filter
+map
+redue
+bind
+(not used on arrays)
+apply - used to pass an array (or similar object) as arguments to the function
+
+Joey Phillips
