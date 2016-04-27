@@ -60,3 +60,23 @@ function AverageAge(set)
   
   return average(ageDiffArray(ancestry));
 }*/
+
+
+-----------------------
+function every(array, condition)
+{
+  var everyMeetsCondition = true;
+  everyMeetsCondition = array.forEach(function(e){
+    if (!condition(e))
+      return false;
+  });
+}
+
+console.log(every([NaN, NaN, NaN], isNaN));
+// → true
+console.log(every([NaN, NaN, 4], isNaN));
+// → false
+//console.log(some([NaN, 3, 4], isNaN));
+// → true
+//console.log(some([2, 3, 4], isNaN));
+// → false
