@@ -1,0 +1,64 @@
+function MultiplicatorUnitFailure = line 4
+function withBoxUnlocked		  = line 36
+
+function MultiplicatorUnitFailure() {
+  this.message = "Numbers not multiplied";
+  this.stack = (new Error()).stack;
+}
+
+MultiplicatorUnitFailure.prototype = Object.create(Error.prototype);
+MultiplicatorUnitFailure.prototype.name = "MultiplyError";
+
+function primitiveMultiply(a, b) {
+  if (Math.random() < 0.5)
+    return a * b;
+  else
+    throw new MultiplicatorUnitFailure();
+}
+
+function reliableMultiply(a, b) {
+  do{
+    try {
+      return primitiveMultiply(a, b);
+    }catch (e){
+      if (e instanceof MultiplicatorUnitFailure)//kept using name property to compare instanceof
+        ;//console.log(e.message);
+      else throw e
+    }
+  }while (true)
+}
+
+console.log(reliableMultiply(8, 8));
+// → 64
+
+---------------------------------------------------------------
+
+function withBoxUnlocked(body) {
+	var originallyUnlocked = false;
+  if (box.locked)
+    box.unlock();
+  else 
+    originallyUnlocked = true;
+  
+  try{
+    return body();
+  }
+  finally{
+    if (!originallyUnlocked)
+    	box.lock();
+  }
+}
+
+withBoxUnlocked(function() {
+  box.content.push("gold piece");
+});
+
+try {
+  withBoxUnlocked(function() {
+    throw new Error("Pirates on the horizon! Abort!");
+  });
+} catch (e) {
+  console.log("Error raised:", e);
+}
+console.log(box.locked);
+// → true
